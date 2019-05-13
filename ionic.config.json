@@ -1,0 +1,7 @@
+{
+  "name": "tower-of-tiles",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
