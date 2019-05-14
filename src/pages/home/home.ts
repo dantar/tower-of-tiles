@@ -1,6 +1,6 @@
+import { TileGameProvider } from './../../providers/tile-game/tile-game';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { TileModel } from '../../app/models/tile-model';
 
 @Component({
   selector: 'page-home',
@@ -8,20 +8,7 @@ import { TileModel } from '../../app/models/tile-model';
 })
 export class HomePage {
 
-  tiles: TileModel[];
-
-  constructor(public navCtrl: NavController) {
-    this.tiles = [];
-    for (let index = 0; index < 25; index++) {
-      const tile = new TileModel();
-      tile.name = 'T'+index;
-      tile.state = 'hidden';
-      this.tiles.push(tile);
-    }
-  }
-
-  tapTile(tile: TileModel) {
-    tile.state = 'shown';
+  constructor(public navCtrl: NavController, public game: TileGameProvider) {
   }
 
 }

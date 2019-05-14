@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TileGameProvider } from '../providers/tile-game/tile-game';
+import { PlayGamePage } from '../pages/play-game/play-game';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     SimpleTileComponent,
+    PlayGamePage,
   ],
   imports: [
     BrowserModule,
@@ -25,12 +28,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    PlayGamePage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TileGameProvider,
   ]
 })
 export class AppModule {}
