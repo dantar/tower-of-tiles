@@ -18,14 +18,20 @@ export class TileGameProvider {
 
   newGame() {
     this.tiles = [];
-    for (let index = 0; index < 25; index++) {
-      const tile = new TileModel();
-      tile.name = 'T'+index;
-      tile.state = 'hidden';
-      this.tiles.push(tile);
-    }
+    ['sword', 'shield', 'gold bag', 'armour', 'chest', 'orc', 'dragon', 'torch', 'rope', 'troll', 'door']
+    .forEach(name => {
+      this.tiles.push(TileModel.hiddenTile(name));
+      this.tiles.push(TileModel.hiddenTile(name));
+    });
+    this.shuffle(this.tiles);
   }
 
-
+  shuffle(vector: any[]) {
+    for (let index = 0; index < vector.length; index++) {
+      const move = Math.floor(Math.random() * (vector.length - index));
+      vector.push(vector[move]);
+      vector.splice(move, 1);
+    }
+  }
 
 }

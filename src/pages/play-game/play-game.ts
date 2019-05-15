@@ -18,6 +18,9 @@ import { TileGameProvider } from '../../providers/tile-game/tile-game';
 export class PlayGamePage {
 
   tiles: TileModel[];
+  first: TileModel = null;
+  second: TileModel = null;
+  state: 'search-first'|'search-second'|'match-found'|'no-match' = 'search-first';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private game: TileGameProvider) {
     this.tiles = this.game.tiles;
@@ -27,8 +30,59 @@ export class PlayGamePage {
     console.log('ionViewDidLoad PlayGamePage');
   }
 
+  private searchFirst(tile: TileModel) {
+    if (tile.state === 'hidden') {
+      tile.state = 'shown';
+      this.first = tile;
+      this.state = 'search-second';
+    }
+  }
+
+  private searchSecond(tile: TileModel) {
+    if (tile.state === 'hidden') {
+      tile.state = 'shown';
+      this.second = tile;
+      if (this.second.name === this.first.name) {
+        this.state = 'match-found';
+      } else {
+        this.state = 'no-match';
+      }
+    };
+  }
+
+  private matchFound(tile: TileModel) {
+    if (tile.state==='shown') {
+      tile.state = 'gone';
+    }
+    if (this.first.state === 'gone' && this.second.state === 'gone') {
+      this.state = 'search-first';
+    }
+  }
+
+  private noMatch(tile: TileModel) {
+    if (tile.state==='shown') {
+      tile.state = 'hidden';
+    }
+    if (this.first.state === 'hidden' && this.second.state === 'hidden') {
+      this.state = 'search-first';
+    }
+  }
+
   tapTile(tile: TileModel) {
-    tile.state = 'shown';
+    switch (this.state) {
+      case 'search-first':
+        this.searchFirst(tile);
+        break;
+      case 'search-second':
+        this.searchSecond(tile);
+        break;
+      case 'match-found':
+        this.matchFound(tile);
+        break;
+      case 'no-match':
+        this.noMatch(tile);
+        break;
+    }
   }
 
 

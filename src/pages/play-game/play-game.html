@@ -6,11 +6,15 @@
 -->
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>play-game</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <div>{{state}}</div>
   <div class="container">
     <simple-tile *ngFor="let tile of tiles" [tile]="tile" (tap)="tapTile($event)"></simple-tile>
   </div>
