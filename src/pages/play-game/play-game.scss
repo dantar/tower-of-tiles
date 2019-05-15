@@ -10,16 +10,35 @@
   flex-wrap: wrap;
 }
 
+.tile img {
+  // width: 70px;
+  // height: 70px;
+  // position: absolute;
+}
+
 .tile-hidden {
   background-color: darkblue;
+}
+
+.tile-hidden .tile-front {
+  display: none;
 }
 
 .tile-shown {
   background-color: lightblue;
 }
 
+.tile-shown .tile-back {
+  background-color: lightblue;
+  display: none;
+}
+
 .tile-gone {
   background-color: white;
+}
+
+.tile-gone img {
+  display: none;
 }
 
 .container {
