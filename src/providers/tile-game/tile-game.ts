@@ -18,7 +18,7 @@ export class TileGameProvider {
 
   newGame() {
     this.tiles = [];
-    ['sword2', 'armor', 'shield_semi', 'potion3', 'helmet2', 'tome', 'document', 'axeDouble2', 'leather2', 'Boots', 'bow2']
+    ['sword2', 'armor', 'shield_semi', 'potion3', 'helmet2', 'tome', 'document', 'axeDouble2', 'leather2', 'Boots', 'bow2', 'hammer2']
     .forEach(name => {
       this.tiles.push(TileModel.hiddenTile(name));
       this.tiles.push(TileModel.hiddenTile(name));

@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TileGameProvider } from '../providers/tile-game/tile-game';
 import { PlayGamePage } from '../pages/play-game/play-game';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PlayGamePage } from '../pages/play-game/play-game';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TileGameProvider,
+    SettingsProvider,
   ]
 })
 export class AppModule {}

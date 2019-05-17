@@ -34,7 +34,7 @@
 }
 
 .tile-gone {
-  background-color: white;
+  background-color: transparent;
 }
 
 .tile-gone img {
@@ -47,4 +47,11 @@
   flex-wrap: wrap;
   align-items: center;
 }
-  
+
+.desktop {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/imgs/seamless01.jpg');
+}

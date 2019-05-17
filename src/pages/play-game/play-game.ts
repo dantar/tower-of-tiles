@@ -1,3 +1,4 @@
+import { SettingsProvider } from './../../providers/settings/settings';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TileModel } from '../../app/models/tile-model';
@@ -22,7 +23,8 @@ export class PlayGamePage {
   second: TileModel = null;
   state: 'search-first'|'search-second'|'match-found'|'no-match' = 'search-first';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private game: TileGameProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private game: TileGameProvider,
+    private settings: SettingsProvider) {
     this.tiles = this.game.tiles;
   }
 
