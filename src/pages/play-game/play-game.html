@@ -9,14 +9,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>play-game</ion-title>
+    <ion-title>Cerca le tessere uguali</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="desktop">
-    <div class="container">
+    <div *ngIf="false" class="container">
       <simple-tile *ngFor="let tile of tiles" [tile]="tile" (tap)="tapTile($event)"></simple-tile>
     </div>
+    <ion-grid *ngIf="true">
+      <ion-row *ngFor="let row of tileRowsOf(4); index as rowidx">
+        <ion-col *ngFor="let tile of row; index as idx">
+          <simple-tile [tile]="tile" (tap)="tapTile($event)"></simple-tile>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

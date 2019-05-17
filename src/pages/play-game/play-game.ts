@@ -87,5 +87,14 @@ export class PlayGamePage {
     }
   }
 
+  tileRowsOf(howmany: number): TileModel[][] {
+    const result = [];
+    let index = 0;
+    while (index < this.tiles.length) {
+      result.push(this.tiles.slice(index, index+howmany));
+      index += howmany;
+    }
+    return result;
+  }
 
 }

@@ -1,8 +1,6 @@
 .tile {
-  width: 70px;
-  height: 70px;
   background-color: peru;
-  margin: 5px;
+  margin: 1px;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -10,14 +8,8 @@
   flex-wrap: wrap;
 }
 
-.tile img {
-  // width: 70px;
-  // height: 70px;
-  // position: absolute;
-}
-
 .tile-hidden {
-  background-color: darkblue;
+  background-color: peru;
 }
 
 .tile-hidden .tile-front {
@@ -25,11 +17,11 @@
 }
 
 .tile-shown {
-  background-color: lightblue;
+  background-color: transparent;
 }
 
 .tile-shown .tile-back {
-  background-color: lightblue;
+  background-color: lightgray;
   display: none;
 }
 

@@ -14,6 +14,7 @@ export class TileGameProvider {
 
   constructor() {
     console.log('Hello TileGameProvider Provider');
+    this.newGame();
   }
 
   newGame() {
