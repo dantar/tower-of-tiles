@@ -1,3 +1,4 @@
+import { TileGameProvider } from './../../providers/tile-game/tile-game';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TileModel } from '../../app/models/tile-model';
 
@@ -16,7 +17,7 @@ export class SimpleTileComponent {
   @Input() tile: TileModel;
   @Output() tap: EventEmitter<TileModel> = new EventEmitter();
 
-  constructor() {
+  constructor(public game: TileGameProvider) {
     console.log('Hello SimpleTileComponent Component');
   }
 

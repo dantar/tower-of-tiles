@@ -11,18 +11,30 @@ import { TileModel } from '../../app/models/tile-model';
 export class TileGameProvider {
 
   tiles: TileModel[];
+  gameset: string = 'Tarini';
+
+  tilesets: {[id: string]: string[]} = {
+    'Avventura': ['sword2.png', 'armor.png', 'shield_semi.png', 'potion3.png', 'helmet2.png', 'tome.png', 
+      'document.png', 'axeDouble2.png', 'leather2.png', 'Boots.png', 'bow2.png', 'hammer2.png'],
+    'Tarini': ['daniele-01.jpg', 'irene-01.jpg', 'matteo-01.jpg', 'damiano-01.jpg', 'valentina-01.jpg', 'rachele-01.jpg',
+      'daniele-02.jpg', 'irene-02.jpg', 'matteo-02.jpg', 'damiano-02.jpg', 'valentina-02.jpg', 'rachele-02.jpg',]
+  };
+
 
   constructor() {
     console.log('Hello TileGameProvider Provider');
     this.newGame();
   }
 
+  changeSet(setname: string) {
+    this.gameset = setname;
+  }
+
   newGame() {
     this.tiles = [];
-    ['sword2', 'armor', 'shield_semi', 'potion3', 'helmet2', 'tome', 'document', 'axeDouble2', 'leather2', 'Boots', 'bow2', 'hammer2']
-    .forEach(name => {
-      this.tiles.push(TileModel.hiddenTile(name));
-      this.tiles.push(TileModel.hiddenTile(name));
+    this.tilesets[this.gameset].forEach(name => {
+      this.tiles.push(TileModel.hiddenTile(this.gameset + '/' + name));
+      this.tiles.push(TileModel.hiddenTile(this.gameset + '/' + name));
     });
     this.shuffle(this.tiles);
   }
