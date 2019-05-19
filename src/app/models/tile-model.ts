@@ -9,4 +9,14 @@ export class TileModel {
 
   name: string;
   state: 'gone' | 'hidden' | 'shown';
+
+}
+
+export class TileSetModel {
+
+  name: string;
+  folder: string;
+  backfilename: string;
+  filenames: string[];
+
 }

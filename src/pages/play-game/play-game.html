@@ -15,9 +15,6 @@
 
 <ion-content padding>
   <div class="desktop">
-    <div *ngIf="false" class="container">
-      <simple-tile *ngFor="let tile of tiles" [tile]="tile" (tap)="tapTile($event)"></simple-tile>
-    </div>
     <ion-grid *ngIf="true">
       <ion-row *ngFor="let row of tileRowsOf(4); index as rowidx">
         <ion-col *ngFor="let tile of row; index as idx">
