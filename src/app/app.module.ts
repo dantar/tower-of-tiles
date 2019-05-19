@@ -13,6 +13,10 @@ import { TileGameProvider } from '../providers/tile-game/tile-game';
 import { PlayGamePage } from '../pages/play-game/play-game';
 import { SettingsProvider } from '../providers/settings/settings';
 
+import { NativeAudio } from '@ionic-native/native-audio';
+import { SoundManagerProvider } from '../providers/sound-manager/sound-manager';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -38,6 +42,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TileGameProvider,
     SettingsProvider,
+    NativeAudio,
+    SoundManagerProvider,
   ]
 })
 export class AppModule {}

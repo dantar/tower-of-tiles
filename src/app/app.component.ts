@@ -1,3 +1,4 @@
+import { SoundManagerProvider } from './../providers/sound-manager/sound-manager';
 import { PlayGamePage } from './../pages/play-game/play-game';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -16,7 +17,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    private sound: SoundManagerProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -34,6 +36,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.sound.init();
     });
   }
 

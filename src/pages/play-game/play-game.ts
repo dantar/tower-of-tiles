@@ -1,3 +1,4 @@
+import { SoundManagerProvider } from './../../providers/sound-manager/sound-manager';
 import { SettingsProvider } from './../../providers/settings/settings';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -24,7 +25,7 @@ export class PlayGamePage {
   state: 'search-first'|'search-second'|'match-found'|'no-match' = 'search-first';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private game: TileGameProvider,
-    private settings: SettingsProvider) {
+    private settings: SettingsProvider, private sound: SoundManagerProvider) {
     this.tiles = this.game.tiles;
   }
 
@@ -34,6 +35,7 @@ export class PlayGamePage {
 
   private searchFirst(tile: TileModel) {
     if (tile.state === 'hidden') {
+      this.sound.play('flip');
       tile.state = 'shown';
       this.first = tile;
       this.state = 'search-second';
@@ -42,6 +44,7 @@ export class PlayGamePage {
 
   private searchSecond(tile: TileModel) {
     if (tile.state === 'hidden') {
+      this.sound.play('flip');
       tile.state = 'shown';
       this.second = tile;
       if (this.second.name === this.first.name) {
@@ -54,6 +57,7 @@ export class PlayGamePage {
 
   private matchFound(tile: TileModel) {
     if (tile.state==='shown') {
+      this.sound.play('match');
       tile.state = 'gone';
     }
     if (this.first.state === 'gone' && this.second.state === 'gone') {
@@ -63,6 +67,7 @@ export class PlayGamePage {
 
   private noMatch(tile: TileModel) {
     if (tile.state==='shown') {
+      this.sound.play('flip');
       tile.state = 'hidden';
     }
     if (this.first.state === 'hidden' && this.second.state === 'hidden') {
