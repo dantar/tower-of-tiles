@@ -1,3 +1,4 @@
+import { TileGameProvider } from './../providers/tile-game/tile-game';
 import { SoundManagerProvider } from './../providers/sound-manager/sound-manager';
 import { PlayGamePage } from './../pages/play-game/play-game';
 import { Component, ViewChild } from '@angular/core';
@@ -18,7 +19,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    private sound: SoundManagerProvider) {
+    private sound: SoundManagerProvider, public game: TileGameProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation

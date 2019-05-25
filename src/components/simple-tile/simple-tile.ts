@@ -21,9 +21,4 @@ export class SimpleTileComponent {
     console.log('Hello SimpleTileComponent Component');
   }
 
-  clickTile(event) {
-    console.log('Tile click', event);
-    this.tap.emit(this.tile);
-  }
-
 }

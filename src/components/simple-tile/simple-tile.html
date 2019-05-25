@@ -1,4 +1,4 @@
-<div class="tile tile-{{tile.state}} img-{{tile.name}}" (click)="clickTile($event)">
-  <img class="tile-back" src="assets/tarini/back.jpg" />
-  <img class="tile-front" src="{{tile.name}}" />
+<div class="tile tile-{{tile.state}} img-{{tile.name}}">
+  <img class="tile-back" src="assets/tarini/back.jpg" (click)="tap.emit(tile)" />
+  <img class="tile-front" src="{{tile.name}}" (click)="tap.emit(tile)" />
 </div>

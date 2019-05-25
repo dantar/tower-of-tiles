@@ -19,14 +19,12 @@ import { TileGameProvider } from '../../providers/tile-game/tile-game';
 })
 export class PlayGamePage {
 
-  tiles: TileModel[];
   first: TileModel = null;
   second: TileModel = null;
   state: 'search-first'|'search-second'|'match-found'|'no-match' = 'search-first';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private game: TileGameProvider,
     private settings: SettingsProvider, private sound: SoundManagerProvider) {
-    this.tiles = this.game.tiles;
   }
 
   ionViewDidLoad() {
@@ -75,7 +73,7 @@ export class PlayGamePage {
     }
   }
 
-  tapTile(tile: TileModel) {
+  tapTile(tile) {
     switch (this.state) {
       case 'search-first':
         this.searchFirst(tile);
@@ -95,8 +93,8 @@ export class PlayGamePage {
   tileRowsOf(howmany: number): TileModel[][] {
     const result = [];
     let index = 0;
-    while (index < this.tiles.length) {
-      result.push(this.tiles.slice(index, index+howmany));
+    while (index < this.game.tiles.length) {
+      result.push(this.game.tiles.slice(index, index+howmany));
       index += howmany;
     }
     return result;

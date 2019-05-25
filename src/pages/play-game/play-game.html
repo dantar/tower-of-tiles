@@ -18,7 +18,7 @@
     <ion-grid *ngIf="true">
       <ion-row *ngFor="let row of tileRowsOf(4); index as rowidx">
         <ion-col *ngFor="let tile of row; index as idx">
-          <simple-tile [tile]="tile" (tap)="tapTile($event)"></simple-tile>
+          <simple-tile [tile]="tile" (tap)="tapTile(tile)"></simple-tile>
         </ion-col>
       </ion-row>
     </ion-grid>
