@@ -15,8 +15,7 @@ export class TileGameProvider {
 
   tilesets: TileSetModel[];
 
-  found: TileModel[];
-
+  score: number;
   state: 'search-next'|'match-found'|'no-match'|'won';
 
   constructor() {
@@ -61,7 +60,7 @@ export class TileGameProvider {
       this.tiles.push(TileModel.hiddenTile(filename));
     });
     this.shuffle(this.tiles);
-    this.found = [];
+    this.score = 0;
     this.state = 'search-next';
   }
 

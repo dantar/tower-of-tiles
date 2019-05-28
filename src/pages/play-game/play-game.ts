@@ -36,6 +36,7 @@ export class PlayGamePage {
     if (tile.state === 'hidden') {
       this.sound.play('flip');
       tile.state = 'shown';
+      this.game.score += 1;
       if (this.filterTiles('shown').length === 2) {
         const shown = this.filterTiles('shown');
         if (shown.length === shown.filter(t => t.name === tile.name).length) {
