@@ -19,9 +19,6 @@ import { TileGameProvider } from '../../providers/tile-game/tile-game';
 })
 export class PlayGamePage {
 
-  first: TileModel = null;
-  second: TileModel = null;
-  state: 'search-first'|'search-second'|'match-found'|'no-match' = 'search-first';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private game: TileGameProvider,
     private settings: SettingsProvider, private sound: SoundManagerProvider) {
@@ -31,26 +28,23 @@ export class PlayGamePage {
     console.log('ionViewDidLoad PlayGamePage');
   }
 
-  private searchFirst(tile: TileModel) {
-    if (tile.state === 'hidden') {
-      this.sound.play('flip');
-      tile.state = 'shown';
-      this.first = tile;
-      this.state = 'search-second';
-    }
+  private filterTiles(state: string): TileModel[] {
+    return this.game.tiles.filter(tile => tile.state === state);
   }
 
-  private searchSecond(tile: TileModel) {
+  private searchNext(tile: TileModel) {
     if (tile.state === 'hidden') {
       this.sound.play('flip');
       tile.state = 'shown';
-      this.second = tile;
-      if (this.second.name === this.first.name) {
-        this.state = 'match-found';
-      } else {
-        this.state = 'no-match';
+      if (this.filterTiles('shown').length === 2) {
+        const shown = this.filterTiles('shown');
+        if (shown.length === shown.filter(t => t.name === tile.name).length) {
+          this.game.state = 'match-found';
+        } else {
+          this.game.state = 'no-match';
+        }
       }
-    };
+    }
   }
 
   private matchFound(tile: TileModel) {
@@ -58,9 +52,18 @@ export class PlayGamePage {
       this.sound.play('match');
       tile.state = 'gone';
     }
-    if (this.first.state === 'gone' && this.second.state === 'gone') {
-      this.state = 'search-first';
+    if (this.filterTiles('shown').length == 0) {
+      if (this.noMoreTiles()) {
+        this.sound.play('applause');
+        this.game.state = 'won';
+      } else {
+        this.game.state = 'search-next';
+      }
     }
+  }
+
+  private noMoreTiles(): boolean {
+    return this.filterTiles('gone').length === this.game.tiles.length;
   }
 
   private noMatch(tile: TileModel) {
@@ -68,18 +71,15 @@ export class PlayGamePage {
       this.sound.play('flip');
       tile.state = 'hidden';
     }
-    if (this.first.state === 'hidden' && this.second.state === 'hidden') {
-      this.state = 'search-first';
+    if (this.filterTiles('shown').length === 0) {
+      this.game.state = 'search-next';
     }
   }
 
   tapTile(tile) {
-    switch (this.state) {
-      case 'search-first':
-        this.searchFirst(tile);
-        break;
-      case 'search-second':
-        this.searchSecond(tile);
+    switch (this.game.state) {
+      case 'search-next':
+        this.searchNext(tile);
         break;
       case 'match-found':
         this.matchFound(tile);

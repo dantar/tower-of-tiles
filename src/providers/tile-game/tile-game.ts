@@ -10,12 +10,14 @@ import { TileModel, TileSetModel } from '../../app/models/tile-model';
 @Injectable()
 export class TileGameProvider {
 
-
   tileset: TileSetModel;
   tiles: TileModel[];
 
   tilesets: TileSetModel[];
 
+  found: TileModel[];
+
+  state: 'search-next'|'match-found'|'no-match'|'won';
 
   constructor() {
     console.log('Hello TileGameProvider Provider');
@@ -59,6 +61,8 @@ export class TileGameProvider {
       this.tiles.push(TileModel.hiddenTile(filename));
     });
     this.shuffle(this.tiles);
+    this.found = [];
+    this.state = 'search-next';
   }
 
   shuffle(vector: any[]) {
