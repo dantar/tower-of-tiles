@@ -78,7 +78,8 @@ export class PlayGamePage {
   }
 
   tapTile(tile) {
-    switch (this.game.state) {
+    const s = this.game.state;
+    switch (s) {
       case 'search-next':
         this.searchNext(tile);
         break;
